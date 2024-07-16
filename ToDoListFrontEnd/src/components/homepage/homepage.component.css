@@ -1,0 +1,17 @@
+h1{
+    color: blueviolet;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.buttonContainer{
+    
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.buttonStyle{
+    margin: 30px;
+    padding: 20px;
+    width: 200px;
+}
