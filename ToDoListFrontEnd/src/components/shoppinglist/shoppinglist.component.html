@@ -1,22 +1,31 @@
-<p>shoppinglist works!</p>
 <div class="shoppingList">
-    <p *ngIf="itemadded > 0">
-        Your shopping list is empty!
-    </p>
-
-    <label for="addItem"></label>
-    <input id="addItem" type="text">
-    <label for="addItem"> Add your items  </label>
-    <input id="item" type="text" (keyup.enter)="addItem()">
-    <ul id="itemsList">
-
-    </ul>
-    <button *ngIf="itemadded >= 1">
-        Add item
-    </button>
-
-    <div>
-        chek item 
+    <div class="inputBox">
+        <label id="itemInputLabel" for="addItem"> Add your items  </label>
+        <br>
+        <br>
+        <input id="labelInput" [(ngModel)]="newItem" type="text" (keyup.enter)="addItem()">
     </div>
+   
+    <!-- <p *ngIf="items?.length == 0">
+    Your list is empty (thank god)
+    </p> -->
+
+    <!-- <div class="listDiv"> -->
+        <ul id="itemsList">
+            <li *ngFor="let item of items" >
+                <input type="checkbox" id="checkbox" (change)="saveCheckedValue($event, item.id)">
+                <label style="text-transform: capitalize;" for="checkbox"> {{item.label}} </label>
+            </li> 
+        </ul>
+    <!-- </div> -->
+    
+
+
+
+
+    <button id="buttonStyle" (click)="deleteCheckedItems()">
+        Delete checked items
+    </button>
 </div>
 
+<!-- Perserve items on refresh -->

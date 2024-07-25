@@ -1,37 +1,45 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+interface Item
+{
+  id: number
+  label:string
+  checked: boolean
+}
 @Component({
   selector: 'app-shoppinglist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './shoppinglist.component.html',
   styleUrl: './shoppinglist.component.css'
 })
+
 export class ShoppinglistComponent {
-itemadded: number = 0;
+  items:Item[] = [];
+  newItem : string = '';
+  id:number = 0;
 
+  addItem()
+  {
+    if(this.newItem == "")
+    {
+      return;
+    }
+    this.items.push({id : this.id++, label: this.newItem, checked: false});
+    this.newItem = '';
+    //call backend and save
+  }
 
-addItem()
-{
-  let newItem = document.createElement("newitem")
-  let item = (<HTMLInputElement>document.getElementById("item"))?.value;
+  saveCheckedValue(event: any, id: number){
+    let item: Item = this.items.find(e=> e.id ==id)!;
+    item.checked = event.target.checked;
+  }
 
-
-  document.getElementById("itemsList")?.appendChild(newItem);
-  (document.getElementById('item') as HTMLInputElement).value = "";
-
-  let newCheckBoxID = 'checkbox_' + item;
-  let newCheckBox = document.createElement("INPUT");
-  newCheckBox.setAttribute("type", "checkbox");
-  newCheckBox.setAttribute("id", newCheckBoxID);
-  newItem.appendChild(newCheckBox);
-  
-  let newCheckLabel = document.createElement('LABEL');
-  newCheckLabel.setAttribute('for', newCheckBoxID);
-  let labelTextNode = document.createTextNode(item);
-  newCheckLabel.appendChild(labelTextNode);
-  newItem.appendChild(newCheckLabel);
+  deleteCheckedItems()
+  {
+    this.items = this.items.filter(e => !e.checked);
+  }
 }
-}
+
 
