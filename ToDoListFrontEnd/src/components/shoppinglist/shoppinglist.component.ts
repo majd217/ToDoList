@@ -28,7 +28,7 @@ export class ShoppinglistComponent {
     }
     this.items.push({id : this.id++, label: this.newItem, checked: false});
     this.newItem = '';
-    //call backend and save
+    console.log(this.id);    //call backend and save
   }
 
   saveCheckedValue(event: any, id: number){
@@ -39,6 +39,7 @@ export class ShoppinglistComponent {
   deleteCheckedItems()
   {
     this.items = this.items.filter(e => !e.checked);
+    console.log(this.items.filter(e => !e.checked));
   }
 }
 
