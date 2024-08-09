@@ -21,6 +21,18 @@ export class ShoppinglistComponent {
 
   constructor(private apiCalls:ApiCalls){};
 
+  ngOnInit () {
+    this.apiCalls.fetchItems().subscribe(json => {
+    
+      let json1 = <any>json;
+      for(const key in json){
+        this.items = this.items.concat({id: Number(key), label: String(json1[key]), checked: Boolean(json1[key])});
+      }
+    });
+
+    console.log(this.items);
+  }
+
   addItem()
   {
     if(this.newItem == "")

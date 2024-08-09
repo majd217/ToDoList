@@ -12,16 +12,16 @@ constructor(private http: HttpClient){}
 
 fetchItems():  Observable<Object> {
 
-    return this.http.get(this.backendURL + '/items/fetch')
+    return this.http.get(this.backendURL + '/item/fetch')
      
 }
 
 saveItems(items:Item[]): Observable<Object>{
-    return this.http.get(this.backendURL + '/items/add');
+    return this.http.get(this.backendURL + '/item/add');
 }
 
 deleteItems(items:Item[]) : Observable<Object> {
-    return this.http.get(this.backendURL + '/items/delete');
+    return this.http.get(this.backendURL + '/item/delete');
 }
 }
 
