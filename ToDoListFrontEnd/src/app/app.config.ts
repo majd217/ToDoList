@@ -2,10 +2,10 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import flatpickr from 'flatpickr';
-import  FlatpickrModule  from 'flatpickr';
+// import { CalendarModule, DateAdapter } from 'angular-calendar';
+// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+// import flatpickr from 'flatpickr';
+// import  FlatpickrModule  from 'flatpickr';
 import { ApiCalls } from '../services/apiCalls';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -17,11 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     
-    importProvidersFrom(
-      CalendarModule.forRoot({
-        provide: DateAdapter,
-        useFactory: adapterFactory,
-      })
-    ),
+    // importProvidersFrom(
+    //   CalendarModule.forRoot({
+    //     provide: DateAdapter,
+    //     useFactory: adapterFactory,
+    //   })
+    // ),
   ]
 };

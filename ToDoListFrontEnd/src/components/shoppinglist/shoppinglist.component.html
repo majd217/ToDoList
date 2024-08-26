@@ -13,7 +13,7 @@
     <!-- <div class="listDiv"> -->
         <ul id="itemsList">
             <li *ngFor="let item of items" >
-                <input type="checkbox" id="checkbox" (change)="saveCheckedValue($event, item.id)">
+                <input type="checkbox" id="checkbox" [ngModel]="item.checked" (change)="saveCheckedValue($event, item.id)">
                 <label style="text-transform: capitalize;" for="checkbox"> {{item.label}} </label>
             </li> 
         </ul>

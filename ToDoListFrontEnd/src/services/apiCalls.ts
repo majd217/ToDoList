@@ -16,12 +16,23 @@ fetchItems():  Observable<Object> {
      
 }
 
-saveItems(items:Item[]): Observable<Object>{
-    return this.http.get(this.backendURL + '/item/add');
+saveItems(label:string, checked:boolean): Observable<Object>{
+    return this.http.post(this.backendURL + '/item/add', null, {
+        params: {checked:checked,label:label}
+    });
+
 }
 
-deleteItems(items:Item[]) : Observable<Object> {
-    return this.http.get(this.backendURL + '/item/delete');
+deleteItems(ids:number[]) : Observable<Object> {
+    return this.http.post(this.backendURL + '/item/delete', null, {
+        params: {itemIDs: ids}
+    });
+}
+
+updateCheckedValue(id: number, checked: boolean) :Observable<Object> {
+    return this.http.post(this.backendURL + '/item/update', null, {
+        params: {checked: checked, id: id}
+    });
 }
 }
 

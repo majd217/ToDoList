@@ -17,20 +17,17 @@ export class ShoppinglistComponent {
   newItem : string = '';
   id:number = 0;
   itemList: Object;
-
-
+  checkedItemIds: number[] = [];
   constructor(private apiCalls:ApiCalls){};
 
   ngOnInit () {
-    this.apiCalls.fetchItems().subscribe(json => {
-    
-      let json1 = <any>json;
-      for(const key in json){
-        this.items = this.items.concat({id: Number(key), label: String(json1[key]), checked: Boolean(json1[key])});
-      }
+    this.apiCalls.fetchItems().subscribe(obj => {
+      let items:Item[] = <Item[]>obj;
+      this.items = this.items.concat(items);
+      this.checkedItemIds.push(...(items.filter(e => e.checked)).map(({ id }) => id));
+      console.log(this.checkedItemIds);
     });
-
-    console.log(this.items);
+    
   }
 
   addItem()
@@ -39,34 +36,49 @@ export class ShoppinglistComponent {
     {
       return;
     }
-
-    this.apiCalls.saveItems(this.items);
     
-
-    this.apiCalls.fetchItems().subscribe(json => {
-    
-      let json1 = <any>json;
-      for(const key in json){
-        this.items = this.items.concat({id: Number(key), label: String(json1[key]), checked: Boolean(json1[key])});
+    this.apiCalls.saveItems(this.newItem, false).subscribe(
+      () => {
+        this.apiCalls.fetchItems().subscribe(obj => {
+          let items:Item[] = <Item[]>obj;
+          this.items = items;
+          this.checkedItemIds.push(...(items.filter(e => e.checked)).map(({ id }) => id));
+          console.log(this.checkedItemIds);
+        });
       }
-    });
-    // this.items.push({id : this.id++, label: this.newItem, checked: false});
+    );
+
+    this.items.push({id : this.id++, label: this.newItem, checked: false});
     this.newItem = '';
-    console.log(this.id);    //call backend and save
-  
   }
 
 
   saveCheckedValue(event: any, id: number){
     let item: Item = this.items.find(e=> e.id ==id)!;
     item.checked = event.target.checked;
+    this.apiCalls.updateCheckedValue(id, item.checked).subscribe();
+
+    if(item.checked == true) {
+    this.checkedItemIds.push(id);
+    }
+    else {
+      this.checkedItemIds.splice(this.checkedItemIds.indexOf(id),1);
+    }
+    console.log(this.checkedItemIds);
+
+   
   }
 
   deleteCheckedItems()
   {
+    this.apiCalls.deleteItems(this.checkedItemIds).subscribe(obj => {
     this.items = this.items.filter(e => !e.checked);
-    console.log(this.items.filter(e => !e.checked));
+    console.log(this.items.filter(e => !e.checked));})
   }
 }
 
 
+
+
+
+//why does it change the order in an odd way?
