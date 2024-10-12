@@ -7,5 +7,6 @@ export const routes: Routes = [
     {path: 'ShoppingList', component: ShoppinglistComponent}, 
     {path: 'HomePage', component: HomepageComponent},
 
-    {path: '', redirectTo: '/HomePage', pathMatch: 'full'},
+    {path: '**', redirectTo: '/ShoppingList', pathMatch: 'full'},
 ];
+ 

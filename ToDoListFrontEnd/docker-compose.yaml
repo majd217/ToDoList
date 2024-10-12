@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: 
+      dockerfile: Dockerfile
+    container_name: frontend_container
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./angular:/project
+      - /project/node_modules
+    environment:
+      - STYLE=css
