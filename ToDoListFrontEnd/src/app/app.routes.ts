@@ -3,7 +3,6 @@ import { ShoppinglistComponent } from '../components/shoppinglist/shoppinglist.c
 
 
 export const routes: Routes = [
-    {path: 'ShoppingList', component: ShoppinglistComponent}, 
-    {path: '**', redirectTo: 'ShoppingList', pathMatch: 'full'},
+    { path: '**', component: ShoppinglistComponent }
 ];
  

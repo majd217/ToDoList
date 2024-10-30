@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter,withHashLocation } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 // import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -16,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),     
     provideAnimations(),
     provideHttpClient(),
+    provideRouter(routes, withHashLocation()),
     
     // importProvidersFrom(
     //   CalendarModule.forRoot({
