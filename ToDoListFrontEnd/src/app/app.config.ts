@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 // import  FlatpickrModule  from 'flatpickr';
 import { ApiCalls } from '../services/apiCalls';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),     
     provideAnimations(),
     provideHttpClient(),
-    provideRouter(routes, withHashLocation()),
+    provideRouter(routes, withHashLocation()), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(),
     
     // importProvidersFrom(
     //   CalendarModule.forRoot({

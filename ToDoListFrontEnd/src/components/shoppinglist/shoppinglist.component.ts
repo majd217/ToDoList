@@ -21,6 +21,7 @@ export class ShoppinglistComponent {
   constructor(private apiCalls:ApiCalls){};
 
   ngOnInit () {
+    
     this.apiCalls.fetchItems().subscribe(obj => {
       let items:Item[] = <Item[]>obj;
       this.items = this.items.concat(items);

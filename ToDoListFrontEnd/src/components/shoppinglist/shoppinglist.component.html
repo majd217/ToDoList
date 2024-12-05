@@ -5,6 +5,11 @@
         <br>
         <input id="labelInput" [(ngModel)]="newItem" type="text" (keyup.enter)="addItem()">
     </div>
+
+    <div class="custom-search">
+        <input type="text" class="custom-search-input" placeholder="Enter your email">
+        <button class="custom-search-botton" type="submit">Subscribe</button>  
+      </div>
    
     <!-- <p *ngIf="items?.length == 0">
     Your list is empty (thank god)

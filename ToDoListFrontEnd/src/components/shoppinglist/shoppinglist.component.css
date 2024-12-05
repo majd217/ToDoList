@@ -45,11 +45,11 @@ li{
     font-size: 20px;
 color: blueviolet;}
 
-input[type="checkbox"]
+/* input[type="checkbox"]
 {
     vertical-align:middle; 
     accent-color: blueviolet; 
-}
+} */
 
 
 #buttonStyle{  
